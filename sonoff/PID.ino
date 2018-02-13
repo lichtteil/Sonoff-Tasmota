@@ -1,13 +1,6 @@
 #ifdef USE_PID
 
-
 #include <PID_v1.h>
-
-enum PIDCommands {
-    CMND_PID_P, CMND_PID_I, CMND_PID_D };
-const char kPIDCommands [] PROGMEM =
-  CMND_PID_P "|" CMND_PID_I "|" CMND_PID_D ;
-
 
 
 //Define the aggressive and conservative Tuning Parameters
@@ -92,47 +85,6 @@ void pollPID() {
   
   }
 
-}
-
-
-
-boolean PIDCommand()
-{
-  char command [CMDSZ];
-  boolean serviced = true;
-  int command_code = GetCommandCode(command, sizeof(command), type, kPIDCommands);
-
-    if (CMND_PID_P == command_code) {
-      if (payload > 0) {
-        kP = payload;
-      }
-      snprintf_P(mqtt_data, sizeof(mqtt_data), S_JSON_COMMAND_NVALUE, command, kP);
-    }
-    else serviced = false;
-  }
-  else serviced = false;
-  return serviced;
-}
-
-
-/*********************************************************************************************\
- * Interface
-\*********************************************************************************************/
-
-#define XDRV_07
-
-boolean Xdrv07(byte function)
-{
-  boolean result = false;
-
-  if (Settings.flag.mqtt_enabled) {
-    switch (function) {
-      case FUNC_COMMAND:
-        result = DomoticzCommand();
-        break;
-    }
-  }
-  return result;
 }
 
 
