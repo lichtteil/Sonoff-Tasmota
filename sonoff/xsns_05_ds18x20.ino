@@ -336,6 +336,7 @@ boolean Ds18x20Read(uint8_t sensor, float &t)
       }
     }
     if (!isnan(t)) {
+      pidPemperature = (double)t;
       return true;
     }
   }

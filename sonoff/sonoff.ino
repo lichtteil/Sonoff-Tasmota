@@ -63,6 +63,10 @@
 #ifdef USE_SPI
   #include <SPI.h>                          // SPI support, TFT
 #endif  // USE_SPI
+#ifdef USE_PID
+  #include "PID.h"                          // PDI support, temperature regulator
+#endif  // USE_PID
+
 
 // Structs
 #include "settings.h"
@@ -2777,6 +2781,9 @@ void setup()
 
   RtcInit();
   XsnsCall(FUNC_INIT);
+  #ifdef USE_PID
+    initPID();
+  #endif
 }
 
 void loop()
@@ -2793,6 +2800,10 @@ void loop()
   }
 #endif  // USE_EMULATION
 
+#ifdef USE_PID
+    pollPID();
+#endif
+  
   if (millis() >= state_loop_timer) {
     StateLoop();
   }
