@@ -2,6 +2,8 @@
 
 #include <PID_v1.h>
 
+double pidTemperature = -1000.0;
+
 
 //Define the aggressive and conservative Tuning Parameters
 //double aggKp=1, aggKi=0, aggKd=0;
@@ -86,6 +88,25 @@ void pollPID() {
   }
 
 }
+
+#define XDRV_08
+
+boolean Xdrv08(byte function)
+{
+  boolean result = false;
+
+  switch (function) {
+    case FUNC_INIT:
+      initPID();
+      break;
+    case FUNC_EVERY_SECOND:
+      pollPID();
+      break;
+  }
+
+  return result;
+}
+
 
 
 #endif // USE_PID
