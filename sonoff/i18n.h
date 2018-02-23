@@ -334,6 +334,14 @@
 #define D_CMND_DISP_SIZE "Size"
 #define D_CMND_DISP_TEXT "Text"
 
+// Commands xdrv_07_pid.ino
+#define D_CMND_PID "pid"
+#define D_CMND_PID_TEMPERATURE "pidTemperature"
+#define D_CMND_PID_P "pidP"
+#define D_CMND_PID_I "pidI"
+#define D_CMND_PID_D "pidD"
+
+
 /********************************************************************************************/
 
 #ifndef MY_LANGUAGE
