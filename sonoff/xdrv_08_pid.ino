@@ -188,6 +188,18 @@ boolean PidCommand() {
     }
     snprintf_P(mqtt_data, sizeof(mqtt_data), S_JSON_COMMAND_NVALUE, command, kP);
   }
+  else if (CMND_PID_I == command_code) {
+    if (XdrvMailbox.payload >= 0) {
+      kI = XdrvMailbox.payload;
+    }
+    snprintf_P(mqtt_data, sizeof(mqtt_data), S_JSON_COMMAND_NVALUE, command, kI);
+  }
+  else if (CMND_PID_D == command_code) {
+    if (XdrvMailbox.payload >= 0) {
+      kD = XdrvMailbox.payload;
+    }
+    snprintf_P(mqtt_data, sizeof(mqtt_data), S_JSON_COMMAND_NVALUE, command, kD);
+  }
   else {
     serviced = false;
   }
