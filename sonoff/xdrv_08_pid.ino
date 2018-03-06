@@ -179,9 +179,11 @@ boolean PidCommand() {
   }
   else if (CMND_PID_TEMPERATURE == command_code) {
     if (XdrvMailbox.payload >= 0) {
-      setPoint = XdrvMailbox.payload;
+      setPoint = (double)XdrvMailbox.payload / 10;
     }
-    snprintf_P(mqtt_data, sizeof(mqtt_data), S_JSON_COMMAND_NVALUE, command, setPoint);
+    char setPoint_chr[5];
+    dtostrfd(setPoint, Settings.flag2.temperature_resolution, setPoint_chr);
+    snprintf_P(mqtt_data, sizeof(mqtt_data), S_JSON_COMMAND_SVALUE, command, setPoint_chr);
   }
   else if (CMND_PID_P == command_code) {
     if (XdrvMailbox.payload >= 0) {
