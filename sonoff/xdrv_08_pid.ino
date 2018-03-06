@@ -72,8 +72,9 @@ void pollPID() {
     return;
   }
   
-  if (pidTemperature >= setPoint * safetyLimit) {
+  if (pidActive == true && pidTemperature >= setPoint * safetyLimit) {
     stopPID();
+    publishPidState();
     return;
   }
 
