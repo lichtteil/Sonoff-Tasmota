@@ -117,13 +117,13 @@ void pollPID() {
     char pidTemperature_chr[10];
     char output_chr[10];
     char relayOnTime_chr[10];
-    char setPoint_chr[1];
+    char setPoint_chr[10];
     char pidActive_chr[5];
 
     dtostrfd(pidTemperature, Settings.flag2.temperature_resolution, pidTemperature_chr);
     dtostrfd((output/255) * 100, 0, output_chr);
     dtostrfd(relayOnTime, 0, relayOnTime_chr);
-    dtostrfd(setPoint, 0, setPoint_chr);
+    dtostrfd(setPoint, Settings.flag2.temperature_resolution, setPoint_chr);
     if (pidActive) {
       snprintf_P(pidActive_chr, sizeof(pidActive_chr), PSTR("true"));
     } else {
