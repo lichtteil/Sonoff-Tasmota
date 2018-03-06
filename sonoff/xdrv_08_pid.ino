@@ -15,7 +15,7 @@ double pidTemperature = -1000.0;
 
 //Define the aggressive and conservative Tuning Parameters
 //double aggKp=1, aggKi=0, aggKd=0;
-double kP = 60, kI = 0.01, kD = 0;
+double kP = 50, kI = 0.01, kD = 0;
 
 double setPoint, output;
 
@@ -34,7 +34,7 @@ unsigned long windowStartTime;
 
 unsigned long logTimer = 0;
 
-float safetyLimit = 1.05; // Percent of taregt temperature
+float safetyLimit = 1.10; // Percent of taregt temperature
 
 void startPID() {
   pidActive = true;
@@ -52,7 +52,7 @@ void stopPID() {
 
 
 void initPID() {
-  setPoint = 24.0;
+  setPoint = 21.0;
   
   temperaturePID.SetSampleTime(1000);  
   startPID();  
